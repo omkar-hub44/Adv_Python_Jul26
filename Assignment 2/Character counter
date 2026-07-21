@@ -1,0 +1,16 @@
+def count_characters(text):
+    character_count = {}
+    for char in text.lower():
+        if char.isalpha():
+            if char in character_count:
+                character_count[char] += 1
+            else:
+                character_count[char] = 1
+
+    sorted_dict = {}
+    for key in sorted(character_count):
+        sorted_dict[key] = character_count[key]
+
+    return sorted_dict
+
+print(count_characters("hello, world123!!"))
