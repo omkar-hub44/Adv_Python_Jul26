@@ -43,3 +43,13 @@ if __name__ == "__main__":
     print(f"calculating {nth}th prime...")
     prime_result = calculate_prime(nth)
     print(f" {nth}th prime is : {prime_result}")
+
+    # When to use Threads
+    # 1. Web scraping multiple websites
+    # 2. Downloading files from the interner
+    # 3. Read/write of multiple files
+    # 4. Handling multiple network connections
+    
+    # Bad use case
+    # 1. Heavy mathematical computation
+    # 2. CPU intensive data processing
