@@ -37,3 +37,6 @@ Class\IncrementalProject\main.py:
 
 Phase 2:
 >> Functional Programming, Decorators & Closures:
+
+Phase 3:
+>> Iterators, Generators & Context Managers
