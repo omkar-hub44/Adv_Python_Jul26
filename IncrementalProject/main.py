@@ -15,3 +15,15 @@ keyboard.display_details()
 
 # Display automatically registered product classes
 ProductRegistry.display_registered_products()
+
+products = [laptop,mouse,keyboard]
+price_details = calculate_prices(products)
+
+print("\n Price Report")
+
+for product,details in zip(products,price_details):
+    print(f"\n Product: {product.name}")
+    print(f"Original Price: {details['original']}")
+    print(f"Discounted Price: {details['discounted']}")
+    print(f"Tax: {details['tax']}")
+    print(f"Final Price: {details['final']}")
