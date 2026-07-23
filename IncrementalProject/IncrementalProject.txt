@@ -34,3 +34,6 @@ Class\IncrementalProject\main.py:
 >> Instantiating products
 >> Displaying details of the products
 >> Showing the registered product classes
+
+Phase 2:
+>> Functional Programming, Decorators & Closures:
