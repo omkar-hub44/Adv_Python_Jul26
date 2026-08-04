@@ -2,10 +2,11 @@ from models.product import Product
 from registry.registry import ProductRegistry
 from services.pricing_service import calculate_prices
 
-
 from reports.inventory import Inventory
 from reports.inventory import inventory_generator
 from reports.inventory import InventoryReport
+
+from concurrency.order_processor import process_orders
 
 # Create products
 laptop = Product("Laptop", 55000, 10)
@@ -22,26 +23,27 @@ keyboard.display_details()
 # Display automatically registered product classes
 ProductRegistry.display_registered_products()
 
-products = [laptop,mouse,keyboard]
+products = [laptop, mouse, keyboard]
 price_details = calculate_prices(products)
 
-print("\n Price Report")
+print("\nPrice Report")
 
-for product,details in zip(products,price_details):
-    print(f"\n Product: {product.name}")
+for product, details in zip(products, price_details):
+    print(f"\nProduct: {product.name}")
     print(f"Original Price: {details['original']}")
     print(f"Discounted Price: {details['discounted']}")
     print(f"Tax: {details['tax']}")
     print(f"Final Price: {details['final']}")
 
-    print("Iterator Output")
+print("\nIterator Output")
 
 inventory = Inventory(products)
 
 for product in inventory:
     print(product.name)
 
-print("Generator Output")
+print("\nGenerator Output")
+
 for product in inventory_generator(products):
     print(product.name)
 
@@ -51,4 +53,11 @@ with InventoryReport("reports/inventory_report.txt") as report:
         report.write(
             f"{product.name} | Rs.{product.price} | Qty: {product.quantity}\n"
         )
-    print("\nInventory report generated successfully.")
+
+print("\nInventory report generated successfully.")
+
+# Threading Demo
+order_quantities = [2, 5, 3]
+
+print("\nProcessing Orders")
+process_orders(products, order_quantities)
