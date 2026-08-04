@@ -28,6 +28,7 @@ def process_orders(products, order_quantities):
     # creates one thread per product
 
     threads = []
+    order_quantities = [2,5,3]
     for product,qty in zip(products,order_quantities):
         thread = threading.Thread(
             target=process_order,
