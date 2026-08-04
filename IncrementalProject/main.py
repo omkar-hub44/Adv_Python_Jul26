@@ -9,8 +9,8 @@ from reports.inventory import InventoryReport
 from concurrency.order_processor import process_orders
 from concurrency.inventory_summary import generate_summary
 
-from multiprocessing import freeze_support
-
+import asyncio
+from async_services.supplier_service import supplier_lookup
 
 def main():
     # Create products
@@ -69,7 +69,16 @@ def main():
     print("\nInventory Summary")
     generate_summary(products)
 
+    print("\nChecking supplier Availability")
+    results = asyncio.run(supplier_lookup(products))
+    print()
 
+    for item in results:
+        print(f"Product: {item['product']}")
+        print(f"Supplier: {item['supplier']}")
+        print(f"Status: {item['status']}")
+        
+from multiprocessing import freeze_support
 if __name__ == "__main__":
     freeze_support()
     main()
