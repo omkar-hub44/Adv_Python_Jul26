@@ -23,6 +23,14 @@ async def say_hello(name:str):
     # root: root endpoint / base url
     return {"message": f"Hello, {name}!"}
 
+@app.get("/users/{user_id}/orders/{order_id}")
+async def get_order(user_id:int,order_id:int):
+    return{
+        "user_id":user_id,
+        "order_id":order_id,
+        "order": f"Order {order_id} for user {user_id}"
+    }
+
 # Run our application
 if __name__ == "__main__":
     uvicorn.run(
